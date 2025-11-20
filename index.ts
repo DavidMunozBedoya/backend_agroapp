@@ -5,6 +5,7 @@ import express from "express";
 import cors from "cors";
 
 import userModule from "./src/modules/user/user.routers.ts"
+import categorySpeciesModule from "./src/modules/species/species.router.ts"
 
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/", userModule);
+app.use("/species", categorySpeciesModule);
 
 Conexion();
 
