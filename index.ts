@@ -6,12 +6,12 @@ import cors from "cors";
 
 import userModule from "./src/modules/user/user.routers.ts"
 
-
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 app.use("/", userModule);
+
 
 Conexion();
 
