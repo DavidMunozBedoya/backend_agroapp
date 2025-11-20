@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/", userModule);
-app.use("/species", categorySpeciesModule);
+app.use("/", categorySpeciesModule);
 
 Conexion();
 

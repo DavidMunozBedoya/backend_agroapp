@@ -6,7 +6,7 @@ export interface Species {
 }
 
 export interface SpeciesInput {
-  Specie_Name: string;
+    Specie_Name: string;
 }
 
 // Obtener todas las especies

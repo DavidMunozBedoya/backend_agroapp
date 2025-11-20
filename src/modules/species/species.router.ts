@@ -9,10 +9,10 @@ import {
 
 const router = express.Router();
 
-router.get('/', getSpecies);
-router.get('/:id', getSpeciesByIdHandler);
-router.post('/', createSpeciesHandler);
-router.put('/:id', updateSpeciesHandler);
-router.delete('/:id', deleteSpeciesHandler);
+router.get('/species', getSpecies);
+router.get('/species/:id', getSpeciesByIdHandler);
+router.post('/species', createSpeciesHandler);
+router.put('/species/:id', updateSpeciesHandler);
+router.delete('/species/:id', deleteSpeciesHandler);
 
 export default router;
