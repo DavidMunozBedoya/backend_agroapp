@@ -16,7 +16,7 @@ export async function getUserDb() {
         return rows;
     } catch (e) {
         console.log(e);
-        throw e; // Es buena práctica relanzar el error para que el controlador lo maneje
+        throw e;
     }
 }
 
@@ -29,7 +29,10 @@ export async function CreateUserDb(userData: User) {
 
         const connection = await Conexion();
         const [rows] = await connection.query("INSERT INTO users (user_name, email_user, phone_number, password) VALUES (?, ?, ?, ?)",
-            [userData.user_name, userData.email_user, userData.phone_number, bcrypt.hashSync(userData.password, 10)]
+            [userData.user_name,
+            userData.email_user,
+            userData.phone_number,
+            bcrypt.hashSync(userData.password, 10)]
         );
         return rows;
     } catch (e) {
@@ -58,7 +61,11 @@ export async function updateUserDb(id: string, userData: User) {
 
         const connection = await Conexion();
         const [result] = await connection.query("UPDATE users SET user_name = ?, email_user = ?, phone_number = ?, password = ? WHERE idUsers = ?",
-            [userData.user_name, userData.email_user, userData.phone_number, bcrypt.hashSync(userData.password, 10), id]
+            [userData.user_name,
+            userData.email_user,
+            userData.phone_number,
+            bcrypt.hashSync(userData.password, 10),
+                id]
         );
         return result;
     } catch (e) {

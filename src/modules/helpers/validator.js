@@ -14,7 +14,7 @@ export const validateNoveltyCategory = (parametros) => {
         errors.push("El nombre de la categoría no debe contener caracteres especiales.");
     }
 
-    return{
+    return {
         errors,
         isValid: errors.length === 0
     }
@@ -72,3 +72,28 @@ export function validateUser(data) {
 
     return errors;
 };
+
+export function validateNovelty(data) {
+    const errors = [];
+
+    // Validacion de cantidad (que no este vacia y sea un numero)
+    if (validator.isEmpty((data.Quantity || '').toString())) {
+        errors.push('La cantidad es obligatoria');
+    } else if (!validator.isNumeric((data.Quantity || ''))) {
+        errors.push('La cantidad debe ser un numero');
+    }
+
+    // Validacion de descripcion (que no este vacia)
+    if (validator.isEmpty(data.Description || '')) {
+        errors.push('La descripcion es obligatoria');
+    }
+
+    // Validacion de fecha (que no este vacia y sea una fecha valida)
+    if (validator.isEmpty(data.Date_Novelty || '')) {
+        errors.push('La fecha es obligatoria');
+    } else if (!validator.isDate(data.Date_Novelty || '')) {
+        errors.push('La fecha no es valida');
+    }
+
+    return errors;
+}
