@@ -6,7 +6,6 @@ import type { Response, Request } from "express";
 
 export async function getSuppliesCategoryController(req: Request, res: Response) {
     try {
-        validateSuppliesCategory(req);
         const suppliesCategory = await getSupplierCategory();
         res.status(200).send({
             status: "Success",
@@ -23,6 +22,13 @@ export async function getSuppliesCategoryController(req: Request, res: Response)
 export async function CreateSuppliesCategoryController(req: Request, res: Response) {
     try {
         const { Category_Name } = req.body;
+        const { errors, isValid } = validateSuppliesCategory({ Category_Name });
+        if (!isValid) {
+            return res.status(400).send({
+                status: "Error",
+                errors,
+            });
+        }
         const newSuppliesCategory = await CreateSupplierCategory(Category_Name);
         res.status(201).send({
             status: "Success",
@@ -55,6 +61,13 @@ export async function UpdateSuppliesCategoryController(req: Request, res: Respon
     try {
         const { id } = req.params;
         const { Category_Name } = req.body;
+        const { errors, isValid } = validateSuppliesCategory({ Category_Name });
+        if (!isValid) {
+            return res.status(400).send({
+                status: "Error",
+                errors,
+            });
+        }
         const updatedSuppliesCategory = await UpdateSupplierCategory(Number(id), Category_Name);
         res.status(200).send({
             status: "Success",

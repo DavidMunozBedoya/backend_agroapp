@@ -5,7 +5,6 @@ import type { Response, Request } from "express";
 
 export async function getNoveltyCategoriesController(req: Request, res: Response) {
     try {
-        validateNoveltyCategory(req);
         const noveltyCategories = await getNoveltyCategoriesDb();
         res.status(200).send({
             status: "Success",
@@ -22,6 +21,13 @@ export async function getNoveltyCategoriesController(req: Request, res: Response
 export async function CreateNoveltyCategoryController(req: Request, res: Response) {
     try {
         const { Category_Name } = req.body;
+        const { errors, isValid } = validateNoveltyCategory({ nombre: Category_Name });
+        if (!isValid) {
+            return res.status(400).send({
+                status: "Error",
+                errors,
+            });
+        }
         const newNoveltyCategory = await CreateNoveltyCategoryDb(Category_Name);
         res.status(201).send({
             status: "Success",
@@ -55,6 +61,13 @@ export async function UpdateNoveltyCategoryController(req: Request, res: Respons
     try {
         const { id } = req.params;
         const { Category_Name } = req.body;
+        const { errors, isValid } = validateNoveltyCategory({ nombre: Category_Name });
+        if (!isValid) {
+            return res.status(400).send({
+                status: "Error",
+                errors,
+            });
+        }
         const updatedNoveltyCategory = await UpdateNoveltyCategoryDb(Number(id), Category_Name);
         res.status(200).send({
             status: "Success",
