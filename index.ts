@@ -9,6 +9,7 @@ import categorySpeciesModule from "./src/modules/species/species.router.ts"
 import noveltyCategoriesModule from "./src/modules/Novelty_Categories/Novelty_Categories.routers.ts"
 import suppliesCategoryModule from "./src/modules/Supplies_Category/Supplies_Category.routers.ts"
 import productionModule from './src/modules/Production/Production.router.ts';
+import productionExpensesModule from './src/modules/Production_Expenses/Production_Expenses.routers.ts';
 
 const app = express();
 app.use(cors());
@@ -19,6 +20,7 @@ app.use("/", categorySpeciesModule);
 app.use("/",noveltyCategoriesModule);
 app.use("/", suppliesCategoryModule);
 app.use("/", productionModule);
+app.use("/", productionExpensesModule);
 
 
 Conexion();
