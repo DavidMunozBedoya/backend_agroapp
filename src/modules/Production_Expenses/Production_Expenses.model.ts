@@ -4,7 +4,7 @@ import { Conexion } from "../../config/dbConexion.ts";
 export const getProductionExpenses = async () => {
     try {
         const connection = await Conexion();
-        const [rows] = await connection.query("SELECT * FROM prodcuction_expenses");
+        const [rows] = await connection.query("SELECT * FROM production_expenses");
         return rows;
     } catch (error) {
         throw error;
@@ -22,7 +22,7 @@ export const createProductionExpense = async (
     try {
         const connection = await Conexion();
         const [rows] = await connection.query(
-            `INSERT INTO prodcuction_expenses 
+            `INSERT INTO production_expenses 
                 (Supplies_idSupplies, Description, Cost, Quantity, Batches_idBatches, Date_Expense)
              VALUES (?, ?, ?, ?, ?, ?)`,
             [Supplies_idSupplies, description, cost, Quantity, batches_idBatches, date]
@@ -46,9 +46,9 @@ export const updateProductionExpense = async (
     try {
         const connection = await Conexion();
         const [rows] = await connection.query(
-            `UPDATE prodcuction_expenses 
+            `UPDATE production_expenses 
              SET Supplies_idSupplies = ?, Description = ?, Cost = ?, Quantity = ?, Batches_idBatches = ?, Date_Expense = ?
-             WHERE idProdcuction_Expenses = ?`,
+             WHERE idProduction_Expenses = ?`,
             [Supplies_idSupplies, description, cost, Quantity, batches_idBatches, date, id]
         );
         return rows;
@@ -62,7 +62,7 @@ export const getExpenseById = async (expenseId:number) => {
     try {
         const connection = await Conexion();
         const [rows] = await connection.query(
-            `SELECT * FROM prodcuction_expenses WHERE idProdcuction_Expenses = ?`,
+            `SELECT * FROM production_expenses WHERE idProduction_Expenses = ?`,
             [expenseId]
         );
         return rows;
