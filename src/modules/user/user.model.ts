@@ -84,3 +84,17 @@ export async function deleteUserDb(id: string) {
         throw e;
     }
 }
+
+export async function getUserByEmailDb(email: string) {
+    try {
+        const connection = await Conexion();
+        const [rows]: any = await connection.query(
+            "SELECT * FROM users WHERE email_user = ?", 
+            [email]
+        );
+        return rows.length > 0 ? rows[0] : null;
+    } catch (e) {
+        console.log(e);
+        throw e;
+    }
+}
