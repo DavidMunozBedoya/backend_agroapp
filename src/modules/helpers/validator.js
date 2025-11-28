@@ -79,9 +79,10 @@ export function validateNovelty(data) {
     const errors = [];
 
     // Validacion de cantidad (que no este vacia y sea un numero)
-    if (validator.isEmpty((data.Quantity || '').toString())) {
+    const quantity = String(data.Quantity || '');
+    if (validator.isEmpty(quantity)) {
         errors.push('La cantidad es obligatoria');
-    } else if (!validator.isNumeric((data.Quantity || ''))) {
+    } else if (!validator.isNumeric(quantity)) {
         errors.push('La cantidad debe ser un numero');
     }
 
