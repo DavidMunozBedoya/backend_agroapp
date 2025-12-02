@@ -14,6 +14,6 @@ router.get('/batch', getBatches);
 router.get('/batch/:id', getBatchByIdHandler);
 router.post('/batch', createBatchHandler);
 router.put('/batch/:id', updateBatchHandler);
-router.put('/batch/:id', deleteBatchHandler);
+router.delete('/batch/:id', deleteBatchHandler);
 
 export default router;
