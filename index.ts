@@ -11,6 +11,8 @@ import suppliesCategoryModule from "./src/modules/Supplies_Category/Supplies_Cat
 import suppliesModule from "./src/modules/Supplies/Supplies.router.ts"
 import noveltiesModule from "./src/modules/novelties/novelties.router.ts"
 import batchesModule from "./src/modules/batches/batches.router.ts"
+import productionModule from "./src/modules/production/production.router.ts"
+import productionExpensesModule from "./src/modules/production_expenses/Production_Expenses.routers.ts"
 
 const app = express();
 app.use(cors());
@@ -23,6 +25,8 @@ app.use("/", suppliesCategoryModule);
 app.use("/", suppliesModule);
 app.use("/", noveltiesModule);
 app.use("/", batchesModule);
+app.use("/", productionModule);
+app.use("/", productionExpensesModule);
 
 
 Conexion();
