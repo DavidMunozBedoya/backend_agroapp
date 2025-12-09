@@ -96,7 +96,41 @@ export function validateNovelty(data) {
         errors.push('La fecha es obligatoria');
     } else if (!validator.isDate(data.Date_Novelty || '')) {
         errors.push('La fecha no es valida');
+
+export const validateSupplies = (parametros) => {
+    const errors = [];
+    const specialCharPattern = /[!@#$%^&'*(),.?":{}|<>]/;
+    
+    if (!parametros) {
+        errors.push("Los parámetros son obligatorios.");
+        return { errors, isValid: false };
     }
 
-    return errors;
+    // Validar nombre del suministro
+    const nombre = (parametros.Supplie_Name ?? parametros.nombre ?? "").toString().trim();
+
+    if (!nombre || validator.isEmpty(nombre)) {
+        errors.push("El nombre del suministro es obligatorio.");
+    } else if (!validator.isLength(nombre, { min: 3, max: 100 })) {
+        errors.push("El nombre del suministro debe tener entre 3 y 100 caracteres.");
+    } else if (specialCharPattern.test(nombre)) {
+        errors.push("El nombre del suministro no debe contener caracteres especiales.");
+    }
+
+    // Validar categoría de suministro
+    const categoria = Number(parametros.Supplies_Category_idSupplies_Category);
+    if (isNaN(categoria) || !Number.isInteger(categoria) || categoria < 1) {
+        errors.push("La categoría del suministro debe ser un número entero positivo.");
+    }
+
+    // Validar lote
+    const lote = Number(parametros.Batches_idBatches);
+    if (isNaN(lote) || !Number.isInteger(lote) || lote < 1) {
+        errors.push("El lote debe ser un número entero positivo.");
+    }
+
+    return {
+        errors,
+        isValid: errors.length === 0
+    };
 }

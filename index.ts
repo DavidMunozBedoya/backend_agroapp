@@ -8,6 +8,7 @@ import userModule from "./src/modules/user/user.routers.ts"
 import categorySpeciesModule from "./src/modules/species/species.router.ts"
 import noveltyCategoriesModule from "./src/modules/Novelty_Categories/Novelty_Categories.routers.ts"
 import suppliesCategoryModule from "./src/modules/Supplies_Category/Supplies_Category.routers.ts"
+import suppliesModule from "./src/modules/Supplies/Supplies.router.ts"
 import noveltiesModule from "./src/modules/novelties/novelties.router.ts"
 import batchesModule from "./src/modules/batches/batches.router.ts"
 
@@ -19,6 +20,7 @@ app.use("/", userModule);
 app.use("/", categorySpeciesModule);
 app.use("/", noveltyCategoriesModule);
 app.use("/", suppliesCategoryModule);
+app.use("/", suppliesModule);
 app.use("/", noveltiesModule);
 app.use("/", batchesModule);
 
