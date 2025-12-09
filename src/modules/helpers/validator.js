@@ -96,6 +96,10 @@ export function validateNovelty(data) {
         errors.push('La fecha es obligatoria');
     } else if (!validator.isDate(data.Date_Novelty || '')) {
         errors.push('La fecha no es valida');
+    }
+
+    return errors;
+}
 
 export const validateSupplies = (parametros) => {
     const errors = [];
@@ -121,12 +125,6 @@ export const validateSupplies = (parametros) => {
     const categoria = Number(parametros.Supplies_Category_idSupplies_Category);
     if (isNaN(categoria) || !Number.isInteger(categoria) || categoria < 1) {
         errors.push("La categoría del suministro debe ser un número entero positivo.");
-    }
-
-    // Validar lote
-    const lote = Number(parametros.Batches_idBatches);
-    if (isNaN(lote) || !Number.isInteger(lote) || lote < 1) {
-        errors.push("El lote debe ser un número entero positivo.");
     }
 
     return {
